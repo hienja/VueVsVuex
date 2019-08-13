@@ -1,28 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <v-app>
+        <v-content>
+            <Todo :list="list" @add="addToList"/>
+        </v-content>
+        <v-content>
+            <Display :list="list"/>
+        </v-content>
+    </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+    import Todo from './components/todo/App';
+    import Display from './components/display/App'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld,
-  },
-};
+    export default {
+        name: 'App',
+        components: {
+            Todo,
+            Display,
+        },
+        data: () => ({
+            list: ['Drink Protein']
+        }),
+        methods: {
+            addToList(value) {
+                this.list.push(value)
+            }
+        }
+    };
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
